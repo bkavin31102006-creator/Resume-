@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kavin B — Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #111827;
+      --teal:   #0d9488;
+      --teal-lt:#ccfbf1;
+      --ink:    #111827;
+      --muted:  #6b7280;
+      --rule:   #e5e7eb;
+      --bg:     #ffffff;
+      --white:  #ffffff;
+      --card:   #f9fafb;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --navy:   #f1f5f9;
+        --teal:   #2dd4bf;
+        --teal-lt:#134e4a;
+        --ink:    #e2e8f0;
+        --muted:  #94a3b8;
+        --rule:   #334155;
+        --bg:     #0f172a;
+        --white:  #1e293b;
+        --card:   #1e293b;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR STRIPE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--teal) 0%, var(--navy) 100%);
+      z-index: 100;
+    }
+
+    /* ── WRAPPER ── */
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 48px 80px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding-bottom: 36px;
+      border-bottom: 2px solid var(--rule);
+      margin-bottom: 44px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .label-resume {
+      font-family: 'DM Serif Display', serif;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(36px, 6vw, 52px);
+      color: var(--navy);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      font-size: 14px;
+    }
+
+    .contact-row a, .contact-row span {
+      color: var(--ink);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .contact-row a:hover { color: var(--teal); }
+
+    .contact-row svg {
+      width: 14px; height: 14px;
+      stroke: var(--teal);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      margin-bottom: 40px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    section:nth-child(2)  { animation-delay: 0.05s; }
+    section:nth-child(3)  { animation-delay: 0.10s; }
+    section:nth-child(4)  { animation-delay: 0.15s; }
+    section:nth-child(5)  { animation-delay: 0.20s; }
+    section:nth-child(6)  { animation-delay: 0.25s; }
+    section:nth-child(7)  { animation-delay: 0.30s; }
+    section:nth-child(8)  { animation-delay: 0.35s; }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ── PROFILE ── */
+    .profile-text {
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.75;
+      border-left: 3px solid var(--teal);
+      padding-left: 16px;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-entry {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .edu-main { flex: 1; }
+
+    .edu-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .edu-sub {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .edu-meta {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .edu-meta .year {
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .edu-meta .grade {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal);
+      margin-top: 2px;
+    }
+
+    /* ── SKILLS TABLE ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0;
+      font-size: 14px;
+    }
+
+    .skills-grid .sk-label {
+      font-weight: 600;
+      color: var(--navy);
+      padding: 7px 12px 7px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .skills-grid .sk-value {
+      color: var(--ink);
+      padding: 7px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .skills-grid .sk-label:last-of-type,
+    .skills-grid .sk-value:last-of-type {
+      border-bottom: none;
+    }
+
+    /* ── PROJECT CARD ── */
+    .project-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--teal);
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 8px 24px rgba(13,148,136,0.1);
+      transform: translateY(-2px);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .project-title {
+      font-size: 15.5px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .project-year {
+      font-size: 12.5px;
+      color: var(--muted);
+      font-style: italic;
+      flex-shrink: 0;
+    }
+
+    .project-stack {
+      font-size: 12.5px;
+      color: var(--teal);
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .project-bullets {
+      list-style: none;
+      padding: 0;
+    }
+
+    .project-bullets li {
+      font-size: 13.5px;
+      color: var(--ink);
+      padding: 4px 0 4px 16px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .project-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-size: 11px;
+      top: 6px;
+    }
+
+    /* ── CERTIFICATIONS ── */
+    .cert-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: var(--teal-lt);
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .cert-name { font-weight: 600; color: var(--navy); }
+    .cert-id   { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .cert-date { font-size: 13px; color: var(--teal); font-weight: 500; }
+
+    /* ── COURSEWORK TAGS ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 13px;
+      padding: 5px 12px;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      color: var(--ink);
+      font-weight: 500;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .tag:hover {
+      background: var(--teal);
+      color: var(--white);
+      border-color: var(--teal);
+    }
+
+    /* ── CONTACT SECTION ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      padding: 12px 14px;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+    }
+
+    .contact-item svg {
+      width: 16px; height: 16px;
+      stroke: var(--teal);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    .contact-item a {
+      color: var(--ink);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .contact-item a:hover { color: var(--teal); }
+
+    /* ── PRINT BUTTON ── */
+    .print-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--teal);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 10px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(13,148,136,0.35);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      z-index: 99;
+    }
+
+    .print-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(13,148,136,0.45);
+    }
+
+    .print-btn svg {
+      width: 15px; height: 15px;
+      stroke: white; fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── ANIMATION ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      body::before { display: none; }
+      .print-btn   { display: none; }
+      .page        { padding: 20px; }
+      .project-card:hover { transform: none; box-shadow: none; }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      .page { padding: 40px 24px 60px; }
+      .edu-entry { flex-direction: column; gap: 4px; }
+      .edu-meta  { text-align: left; }
+      .project-header { flex-direction: column; gap: 2px; }
+      .skills-grid { grid-template-columns: 110px 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header>
+    <p class="label-resume">Resume</p>
+    <h1>Kavin B</h1>
+    <p class="subtitle">B.Tech – Computer Science Engineering &nbsp;|&nbsp; 2nd Year &nbsp;|&nbsp; Expected 2028</p>
+    <div class="contact-row">
+      <a href="mailto:b.kavin31102006@gmail.com">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        b.kavin31102006@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/kavin-balamurugan-51947b319" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/kavin-balamurugan
+      </a>
+      <span>
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Chennai, Tamil Nadu
+      </span>
+    </div>
+  </header>
+
+  <!-- PROFILE -->
+  <section>
+    <h2 class="section-title">Profile</h2>
+    <p class="profile-text">
+      Computer Science Engineering student with experience in full-stack web development using Node.js, Express.js, MySQL, and JavaScript. Passionate about building secure and scalable software applications.
+    </p>
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <h2 class="section-title">Education</h2>
+
+    <div class="edu-entry">
+      <div class="edu-main">
+        <div class="edu-name">B.S. Abdur Rahman Crescent Institute of Science &amp; Technology</div>
+        <div class="edu-sub">B.Tech – Computer Science Engineering &nbsp;·&nbsp; Vandalur, Chennai</div>
+      </div>
+      <div class="edu-meta">
+        <div class="year">2024 – 2028 (Expected)</div>
+        <div class="grade">2nd Year</div>
+      </div>
+    </div>
+
+    <div class="edu-entry">
+      <div class="edu-main">
+        <div class="edu-name">Hindu Colony Chellamal Vidhyalya Sr. Sec. School</div>
+        <div class="edu-sub">Nanganallur, Chennai</div>
+      </div>
+      <div class="edu-meta">
+        <div class="grade">12th – 86.4%</div>
+        <div class="grade">10th – 87.2%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNICAL SKILLS -->
+  <section>
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="skills-grid">
+      <span class="sk-label">Languages</span>
+      <span class="sk-value">Python, Java, C, C++</span>
+
+      <span class="sk-label">Web / Backend</span>
+      <span class="sk-value">Node.js, Express.js, HTML5, CSS3, Vanilla JavaScript</span>
+
+      <span class="sk-label">Database</span>
+      <span class="sk-value">MySQL (raw SQL, InnoDB, ACID transactions, query optimisation)</span>
+
+      <span class="sk-label">Auth / Security</span>
+      <span class="sk-value">JWT, BCrypt, Rate Limiting, Parameterised Queries, OWASP Top 10</span>
+
+      <span class="sk-label">Concepts</span>
+      <span class="sk-value">Object-Oriented Programming (OOP), MVC Architecture, RESTful APIs</span>
+
+      <span class="sk-label">Tools</span>
+      <span class="sk-value">Git, GitHub, Postman, npm, VS Code, MySQL Workbench</span>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section>
+    <h2 class="section-title">Projects</h2>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-title">NovaPay – Full-Stack Banking Web Application</div>
+        <div class="project-year">2025 – 2026</div>
+      </div>
+      <div class="project-stack">Node.js · Express.js · MySQL · JWT · BCrypt · HTML5 / CSS3 / JavaScript</div>
+      <ul class="project-bullets">
+        <li>Engineered a complete digital banking platform supporting user registration, login, deposits, withdrawals, and peer-to-peer (P2P) fund transfers.</li>
+        <li>Implemented stateless authentication using JSON Web Tokens (JWT) and BCrypt (cost factor 12) for secure password hashing.</li>
+        <li>Designed a normalised MySQL schema using DECIMAL(15,2) for monetary precision and ACID-compliant atomic transactions with SELECT … FOR UPDATE deadlock prevention.</li>
+        <li>Built a multi-layer security middleware stack addressing OWASP Top 10 risks: JWT verification, input validation, and brute-force rate limiting.</li>
+        <li>Architected using MVC separation of concerns; backend exposes a fully decoupled RESTful API consumed by a responsive vanilla JavaScript frontend.</li>
+        <li>Executed 18 test cases across authentication, banking operations, edge cases, and concurrency scenarios — 100% pass rate.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section>
+    <h2 class="section-title">Certifications</h2>
+    <div class="cert-row">
+      <div>
+        <div class="cert-name">HackerRank – SQL (Intermediate)</div>
+        <div class="cert-id">Credential ID: 83645AA7F3E0 &nbsp;·&nbsp; Verified via HackerRank skill certification test</div>
+      </div>
+      <div class="cert-date">May 2026</div>
+    </div>
+  </section>
+
+  <!-- RELEVANT COURSEWORK -->
+  <section>
+    <h2 class="section-title">Relevant Coursework</h2>
+    <div class="tags">
+      <span class="tag">Data Structures &amp; Algorithms</span>
+      <span class="tag">Database Management Systems</span>
+      <span class="tag">Object-Oriented Programming</span>
+      <span class="tag">Computer Networks</span>
+      <span class="tag">Operating Systems</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section>
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        <a href="mailto:b.kavin31102006@gmail.com">b.kavin31102006@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <a href="https://www.linkedin.com/in/kavin-balamurugan-51947b319" target="_blank">linkedin.com/in/kavin-balamurugan</a>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Chennai, Tamil Nadu, India</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- PRINT BUTTON -->
+<button class="print-btn" onclick="window.print()">
+  <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+  Print / Save PDF
+</button>
+
+</body>
+</html>
